@@ -1,0 +1,38 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="Cámara">
+
+        <SwitchPreferenceCompat
+            app:key="camera"
+            app:title="Ver cámara interna"
+            app:summaryOff="Cámara externa activa"
+            app:summaryOn="Cámara interna activa" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Notificaciones">
+
+        <SwitchPreferenceCompat
+            app:key="audio_notifications"
+            app:title="Notificaciones sonoras" />
+
+        <SwitchPreferenceCompat
+            app:key="visual_notifications"
+            app:title="Notificaciones en pantalla" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Modo de intervención">
+        <ListPreference
+            app:defaultValue="low_intervention"
+            app:entries="@array/pref_intervention_mode_labels"
+            app:entryValues="@array/pref_intervention_mode_values"
+            app:key="Modo de intervención"
+            app:title="Modos de intervención"
+            app:summary="Elige el modo de intervención: Alto, Medio, Bajo"
+
+            />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
