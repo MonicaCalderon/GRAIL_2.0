@@ -5,14 +5,15 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
 import android.media.MediaPlayer
-import android.media.RingtoneManager
-import android.net.Uri
 import android.os.Bundle
 import android.os.VibrationEffect
-import android.os.VibrationEffect.DEFAULT_AMPLITUDE
 import android.os.Vibrator
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -25,6 +26,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
 import com.example.grail20.databinding.ActivityMainBinding
+import com.google.android.material.imageview.ShapeableImageView
 
 
 class MainActivity : AppCompatActivity() {
@@ -33,6 +35,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var vibrator: Vibrator
     private lateinit var btnSettings: Button
     private lateinit var btnCreateNotification: Button
+    private lateinit var notificationRect: ShapeableImageView
 
     private var imageCapture:ImageCapture?=null
 
@@ -41,9 +44,12 @@ class MainActivity : AppCompatActivity() {
     private var audioNotifications: Boolean = true
     private var visualNotifications: Boolean = true
     private var interventionMode: String = "low_intervention"
+    private var pedestrianNetwork: String = "network_1"
+    private var driverNetwork: String = "network_1"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -83,12 +89,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startCamera(){
-
         val cameraProviderFuture = ProcessCameraProvider
             .getInstance(this)
 
         cameraProviderFuture.addListener({
-
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
 
             val preview = Preview.Builder()
@@ -98,7 +102,6 @@ class MainActivity : AppCompatActivity() {
                         binding.viewFinder.surfaceProvider
                     )
                 }
-
             imageCapture = ImageCapture.Builder()
                 .build()
 
@@ -124,6 +127,8 @@ class MainActivity : AppCompatActivity() {
         audioNotifications = sp.getBoolean("audio_notifications", true)
         visualNotifications = sp.getBoolean("visual_notifications", true)
         interventionMode = sp.getString("intervention_mode", "low_intervention").toString()
+        pedestrianNetwork = sp.getString("pedestrian_network", "network_1").toString()
+        driverNetwork = sp.getString("driver_network", "network_1").toString()
     }
 
     private fun prefCamera(camera: Boolean): CameraSelector {
@@ -181,22 +186,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
     private fun visualNotification(alert: String){
         if (visualNotifications) {
             // TODO: This part will be manage by external events
             //  implemented in the future for this project
-            var builder = AlertDialog.Builder(this)
-            builder.setTitle("Alerta para el conductor")
-                .setMessage(alert)
-                .setCancelable(false)
-                .setPositiveButton("Leído", DialogInterface.OnClickListener { dialog, id ->
-                    Toast.makeText(this, "Notificación leída", Toast.LENGTH_SHORT).show()
-                })
-                .setNegativeButton("Cancelar", DialogInterface.OnClickListener { dialog, id ->
-                    Toast.makeText(this, "Notificación rechazada", Toast.LENGTH_SHORT).show()
-                })
-                .create()
-                .show()
+            notificationRect = findViewById(R.id.notificationRect );
+
+            notificationRect.visibility = View.VISIBLE
+
+
+            //TODO: when driver reply, notification goes off
         }
     }
 

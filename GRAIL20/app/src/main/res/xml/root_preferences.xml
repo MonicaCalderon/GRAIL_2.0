@@ -34,6 +34,26 @@
             app:title="Modos de intervención"
             app:useSimpleSummaryProvider="true"
             />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Red para detección de eventos">
+        <ListPreference
+            app:defaultValue="network_1"
+            app:entries="@array/pedestrian_network_labels"
+            app:entryValues="@array/pedestrian_network_values"
+            app:key="pedestrians_network"
+            app:title="Detección de peatones"
+            app:useSimpleSummaryProvider="true"
+            />
+
+        <ListPreference
+            app:defaultValue="network_1"
+            app:entries="@array/driver_network_labels"
+            app:entryValues="@array/driver_network_values"
+            app:key="driver_network"
+            app:title="Detección del conductor"
+            app:useSimpleSummaryProvider="true"
+            />
 
     </PreferenceCategory>
 

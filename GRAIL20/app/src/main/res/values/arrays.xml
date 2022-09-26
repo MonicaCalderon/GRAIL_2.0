@@ -22,4 +22,36 @@
         <item>"active_intervention"</item>
     </array>
 
+    <array name="pedestrian_network_labels">
+        <item>"Red 1"</item>
+        <item>"Red 2"</item>
+        <item>"Red 3"</item>
+        <item>"Red 4"</item>
+        <item>"Red 5"</item>
+    </array>
+
+    <array name="pedestrian_network_values">
+        <item>"network_1"</item>
+        <item>"network_2"</item>
+        <item>"network_3"</item>
+        <item>"network_4"</item>
+        <item>"network_5"</item>
+    </array>
+
+    <array name="driver_network_labels">
+        <item>"Red 1"</item>
+        <item>"Red 2"</item>
+        <item>"Red 3"</item>
+        <item>"Red 4"</item>
+        <item>"Red 5"</item>
+    </array>
+
+    <array name="driver_network_values">
+        <item>"network_1"</item>
+        <item>"network_2"</item>
+        <item>"network_3"</item>
+        <item>"network_4"</item>
+        <item>"network_5"</item>
+    </array>
+
 </resources>
